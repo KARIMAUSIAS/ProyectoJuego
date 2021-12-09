@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 public class ProyectoJuego {
 
+    //Aqui se guardan la baraja de cartas
     public static int[] cartas = new int[52];
+    //En estos vectores se guardan las cartas en cada fila.
     public static int[] fila1 = new int[13];
     public static int[] fila2 = new int[13];
     public static int[] fila3 = new int[13];
@@ -13,16 +15,20 @@ public class ProyectoJuego {
     public static int[] fila5 = new int[13];
     public static int[] fila6 = new int[13];
     public static int[] fila7 = new int[13];
+    //En este vector se guardan las cartas de la pila.
     public static int[] pila = new int[24];
+    //En este vector se guardan las cartas de los montones.
     public static int[] monton1 = new int[13];
     public static int[] monton2 = new int[13];
     public static int[] monton3 = new int[13];
     public static int[] monton4 = new int[13];
+    //Estas son variables que se usan en el resto del programa para llevar la contabilizacion de
+    //los distintos vectores
     public static int primera = 1, segunda = 2, tercera = 3, cuarta = 4,
             quinta = 5, sexta = 6, septima = 7, cont1 = 0, cont2 = 1, cont3 = 2,
             cont4 = 3, cont5 = 4, cont6 = 5, cont7 = 6, cuentaPila = 0, m1 = 0, m2 = 0,
             m3 = 0, m4 = 0, filaMover, cuantas, filaCogida;
-
+//Aqui se muestra el menu para que el usuario elija lo que desea hacer y devuelve la opción elegida
     public static int menu() {
         Scanner lector = new Scanner(System.in);
         System.out.println("Elige una opción: ");
@@ -37,6 +43,7 @@ public class ProyectoJuego {
         return opcion;
     }
 
+//Aqui se comprueba la si una fila esta llena para  que no se puedan poner cartas de más
     public static boolean comprobarFilaLLena(int fila) {
         switch (fila) {
             case 1:
@@ -86,6 +93,7 @@ public class ProyectoJuego {
         return false;
     }
 
+//Aqui se compruba la victoria si todos los montones están llenos
     public static boolean comprobarVictoria() {
         if (m1 == 13 && m2 == 13 && m3 == 13 && m4 == 13) {
             return true;
@@ -94,6 +102,7 @@ public class ProyectoJuego {
         }
     }
 
+//Aqui dependiendo de la opcion escogida se realiza una opción u otra
     public static void realizaAccion(int opcion) {
         Scanner lector = new Scanner(System.in);
         int fila;
@@ -134,6 +143,7 @@ public class ProyectoJuego {
         }
     }
     
+//Aqui se borra la carta a la hora de cambiarla de una pila o fila
     public static void borrarCarta(){
         switch (filaCogida) {
             case 1:
@@ -166,6 +176,7 @@ public class ProyectoJuego {
         }
     }
 
+//Aqui se prepara los distintos vectores donde se guardan las cartas
     public static void prepararCartas() {
         for (int i = 0; i < cartas.length; i++) {
             cartas[i] = i + 1;
@@ -192,6 +203,7 @@ public class ProyectoJuego {
         }
     }
 
+//Aqui se barajn las filas y pilas, es decir, se ponen en orden aleatorio la baraja
     public static void barajar() {
         Random r = new Random();
         for (int i = 0; i < cartas.length; i++) {
@@ -202,6 +214,7 @@ public class ProyectoJuego {
         }
     }
 
+//Aqui se colocan el las diferentes filas y en la pila las cartas
     public static void colocarEnTablero() {
         int cont = 0;
         for (int i = 0; i < primera; i++) {
@@ -238,6 +251,7 @@ public class ProyectoJuego {
         }
     }
 
+//Aqui se muestra el tablero con las distintas filas, la pila y los montones
     public static void mostrarTablero() {
         System.out.print("Fila 1: ");
         for (int i = 0; i < primera; i++) {
@@ -325,6 +339,7 @@ public class ProyectoJuego {
         System.out.println("");
     }
 
+//Aqui se saca una carta de la pila
     public static void sacarCartaPila() {
         if (cuentaPila == 24) {
             cuentaPila = 0;
@@ -332,6 +347,7 @@ public class ProyectoJuego {
         cuentaPila++;
     }
 
+//Aqui se elige la carta que quieres mover
     public static int elegirCarta() {
         Scanner lector = new Scanner(System.in);
         System.out.println("De donde quieres coger la carta: ");
@@ -383,6 +399,8 @@ public class ProyectoJuego {
         return 0;
     }
 
+//Aqui con la carta ya elegida se compara si esa carta concuerda con
+//la carta del monton en concreto y si es asi pues se suma uno al monton
     public static void moverCartaMonton(int carta) {
         Scanner lector = new Scanner(System.in);
         System.out.println("A que montón quieres moverla: ");
@@ -410,6 +428,7 @@ public class ProyectoJuego {
         }
     }
 
+//Aqui con la carta elegida se mueve la carta a la fila elegida
     public static void moverCartaFila(int carta) {
         Scanner lector = new Scanner(System.in);
         switch (filaMover) {
